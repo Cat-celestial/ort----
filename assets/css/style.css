@@ -1,0 +1,108 @@
+.mainBox {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.roadBox {
+    width: 1000px;
+    height: 1000px;
+    margin: auto;
+    background: url("/assets/images/road.png");
+}
+
+.car {
+    position: absolute;
+    left: 1050px;
+    bottom: -120px;
+    transform: rotate(270deg);
+}
+
+@keyframes demo {
+    0% {
+        left: 1050px;
+        bottom: -120px;
+        transform: rotate(270deg);
+    }
+
+    22% { /* ехать прямо до первого поворота */
+        left: 1050px;
+        bottom: 470px;
+        transform: rotate(270deg);
+    }
+
+     24% { /*первый поворотик на первом повороте  */
+        left: 1030px;
+        bottom: 485px;
+        transform: rotate(220deg);
+    }
+    
+    26% { /* второй поворотик на первом повороте */
+        left: 1010px;
+        bottom: 530px;
+        transform: rotate(180deg);
+    }
+    
+    46% { /* ехать прямо до второго поворота */
+        left: 340px;
+        bottom: 530px;
+        transform: rotate(180deg);
+    }
+    
+    48% { /* первый поворотик на втором повороте  */
+        left: 320px;
+        bottom: 515px;
+        transform: rotate(120deg);
+    }
+    
+    50% { /* второй поворотик на втором повороте */
+        left: 300px;
+        bottom: 470px;
+        transform: rotate(90deg);
+    }
+    
+    70% { /* ехать прямо до третьего поворота */
+        left: 300px;
+        bottom: -180px;
+        transform: rotate(90deg);
+    }
+    
+     72% { /* первый поворотик на третьем повороте */
+        left: 320px;
+        bottom: -195px;
+        transform: rotate(30deg);
+    }
+    
+    74% { /* второй поворотик на третьем повороте */
+        left: 340px;
+        bottom: -200px;
+        transform: rotate(0deg);
+    }
+    
+    94% { /* ехать прямо до четвертого поворота */
+        left: 900px;
+        bottom: -200px;
+        transform: rotate(0deg);
+    }
+    
+     96% { /*первый поворотик на четвертом повороте */
+        left: 920px;
+        bottom: -180px;
+        transform: rotate(-30deg);
+    }
+    
+    100% { /* второй поворотик на четвертом повороте */
+        left: 1050px;
+        bottom: -120px;
+        transform: rotate(-90deg);
+    }
+}
+
+.car {
+    animation-name: demo;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
