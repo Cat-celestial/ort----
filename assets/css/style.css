@@ -40,7 +40,7 @@
 
 .openedImg {
     position: absolute;
-    width: 247px;
+    width: 246px;
     z-index: 10;
     transition: 0.7s;
     left: 4px;
