@@ -13,10 +13,20 @@ function changeFIT() {
         for (let i = 0; i < monyFiltsList.length; i++) {
             let lowRate = monyFiltsList[i];
             let upRate = monyFiltsList[i + 1];
-            let t = (monyForTax - lowRate) * ratesList[i];
+            let t = 0;
+
+            if (monyForTax > upRate) {
+                t = upRate * ratesList[i];
+                console.log(t, i);
+            } else {
+                t = (monyForTax - lowRate) * ratesList[i];
+                console.log(t, i);
+
+            }
 
             if (monyForTax > lowRate) {
-                fit = fit + t;       
+                fit = fit + t;
+                console.log(fit, i);
             } else {
                 fitOutput.textContent = `$ ${fit.toFixed(2)}`;
                 break;
