@@ -1,92 +1,28 @@
-document.querySelector(".openedImg").style.width = document.querySelector(".closedImg").style.width;
+let incomeInp = document.querySelector(".incomeInput");
+incomeInp.focus();
+let fitOutput = document.querySelector(".fitSum");
 
-function checkFun1() {
-    document.querySelector(".checkButton").style.cssText = `
-        margin-top: ${"11.7px"};
-        margin-left: ${"33px"};
-        border-right: ${"4.3px solid orange"};
-        border-bottom: ${"5px solid orange"};
-    `;
-}
+let monyFiltsList = [0, 11600, 47150, 100525, 191950, 243725, 609350, 1000000000000];
+let ratesList = [0.10, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37];
 
-function checkFun2() {
-    document.querySelector(".checkButton").style.cssText = `
-        margin-top: ${"10px"};
-        margin-left: ${"30px"};
-        border-right: ${"6px solid orange"};
-        border-bottom: ${"8px solid orange"};
-    `;
-}
+function changeFIT() {
+    let fit = 0;
+    let monyForTax = incomeInp.value - 14600;
 
-function changeImgOnCheck() {
-    if (document.querySelector(".mainInp").value == 1234) {
-        document.querySelector(".openedImg").style.cssText = `
-            z-index: ${"30"};
-        `;
+    if (monyForTax > 0) {
+        for (let i = 0; i < monyFiltsList.length; i++) {
+            let lowRate = monyFiltsList[i];
+            let upRate = monyFiltsList[i + 1];
+            let t = (monyForTax - lowRate) * ratesList[i];
 
+            if (monyForTax > lowRate) {
+                fit = fit + t;       
+            } else {
+                fitOutput.textContent = `$ ${fit.toFixed(2)}`;
+                break;
+            }
+        }
+    } else {
+        fitOutput.textContent = "$ 0.00"
     }
 }
-
-function changeFun1() {
-    document.querySelector(".refreshButton").style.cssText = `
-        margin-top: ${"11.7px"};
-        margin-left: ${"33px"};
-        border-right: ${"4.3px solid orange"};
-        border-bottom: ${"5px solid orange"};
-    `;
-}
-
-function changeFun2() {
-    document.querySelector(".refreshButton").style.cssText = `
-        margin-top: ${"10px"};
-        margin-left: ${"30px"};
-        border-right: ${"6px solid orange"};
-        border-bottom: ${"8px solid orange"};
-    `;
-}
-
-function changeImgOnChange() {
-    document.querySelector(".openedImg").style.cssText = `
-        z-index: ${"10"};
-    `;
-
-    document.querySelector(".mainInp").value = "";
-}
-
-function chekFunc() {
-    checkFun1();
-    setTimeout(checkFun2, 100);
-    setTimeout(changeImgOnCheck, 200);
-}
-
-function changeFuncMain() {
-    changeFun1();
-    setTimeout(changeFun2, 100);
-    setTimeout(changeImgOnChange, 200);
-}
-
-
-// Задание похожее на дз 19 урока
-
-let sum = 1000;
-let rate = 24;
-let term = 12;
-
-let monthRate = rate / 12;
-
-for (let i = 1; i <= term; i++) {
-    let profit = Math.round(sum * monthRate) / 100;
-    sum = Math.round((sum + profit) * 100) / 100;
-    console.log(`#${i} profit: ${profit}, sum: ${sum}`);
-}
-
-console.log(`Result: ${sum}`);
-
-// Оъяснение для дз для 19 урока (кредит)
-
-let sum1 = 1000;
-let rate1 = 24;
-let term1 = 4;
-
-
-

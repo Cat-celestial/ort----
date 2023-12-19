@@ -1,50 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap');
+
+body {
+    margin: 0;
+}
+
 .mainBox {
-    margin: 10px 25px;
+    width: 80%;
+    margin: 50px auto;
+    font-family: 'Inter', sans-serif;
 }
 
-.mainInp {
-    width: 40vw;
-    height: 3.5vh;
-    font-size: 19px;
-    border-radius: 5px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.mainTitle {
+    font-size: 38px;
+    font-weight: 600;
 }
 
-.Button {
+.yourIncLabel {
+    font-size: 17px;
+    display: inline-block;
+}
+
+.incomeInput {
     margin-left: 30px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 8px 28px;
-    color: white;
-    /* width: 20vw; */
-    /* height: 3.5vh; */
-    font-size: 19px;
-    border: 0 solid orange;
-    border-right: 6px solid orange;
-    border-bottom: 8px solid orange;
-    background-color: #333333;
-    transition: 0.1s;
-    border-radius: 3px;
+    font-size: 20px;
+    padding: 5px 7px;
+    margin-bottom: 25px;
+    font-weight: 500;
+    border-radius: 5px;
+    border-color: rgba(87, 87, 87, 0.438);
 }
 
-.imageBox {
-    margin-top: 30px;
-    position: absolute;
+.labelFitSum {
+    font-size: 17px;
+    display: inline-block;
 }
 
-.closedImg {
-    position: absolute;
-    transition: 0.7s;
-    z-index: 20;
+.fitSum {
+    font-size: 25px;
+    font-weight: 600;
+    display: inline-block;
+    margin-left: 95px;
 }
-
-.openedImg {
-    position: absolute;
-    width: 246px;
-    z-index: 10;
-    transition: 0.7s;
-    left: 4px;
-    top: 7px;
-}
-
-/* .checkButton:on */
