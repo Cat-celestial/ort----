@@ -17,22 +17,28 @@ function changeFIT() {
 
             if (monyForTax > upRate) {
                 t = upRate * ratesList[i];
-                console.log(t, i);
+                fit = fit + t;
+
+                console.log("On full; t = ", upRate * ratesList[i]);
             } else {
                 t = (monyForTax - lowRate) * ratesList[i];
-                console.log(t, i);
-
-            }
-
-            if (monyForTax > lowRate) {
                 fit = fit + t;
-                console.log(fit, i);
-            } else {
                 fitOutput.textContent = `$ ${fit.toFixed(2)}`;
+
+                console.log("On last; t = ", upRate * ratesList[i]);
                 break;
             }
+
         }
     } else {
         fitOutput.textContent = "$ 0.00"
     }
 }
+
+// if (monyForTax > lowRate) {
+//     fit = fit + t;
+//     console.log(fit, i);
+// } else {
+//     fitOutput.textContent = `$ ${fit.toFixed(2)}`;
+//     break;
+// }
