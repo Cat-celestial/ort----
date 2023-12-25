@@ -7,37 +7,9 @@ body {
 .mainBox {
     width: 80%;
     margin: 50px auto;
-    font-family: 'Inter', sans-serif;
 }
 
-.mainTitle {
-    font-size: 38px;
-    font-weight: 600;
-}
-
-.yourIncLabel {
-    font-size: 17px;
-    display: inline-block;
-}
-
-.incomeInput {
-    margin-left: 30px;
-    font-size: 20px;
-    padding: 5px 7px;
-    margin-bottom: 25px;
-    font-weight: 500;
-    border-radius: 5px;
-    border-color: rgba(87, 87, 87, 0.438);
-}
-
-.labelFitSum {
-    font-size: 17px;
-    display: inline-block;
-}
-
-.fitSum {
-    font-size: 25px;
-    font-weight: 600;
-    display: inline-block;
-    margin-left: 95px;
+input {
+    width: 40%;
+    padding: 4px;
 }
