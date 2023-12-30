@@ -1,61 +1,70 @@
 let inpt = document.querySelector("#inp");
+inpt.focus();
+let labelBillAm = document.querySelector("#billAmLabel");
+let labelBills = document.querySelector("#billsLabel");
 
-let mark = 0;
-let answerCounter = 0;
-let answNumb = 1;
-let rightAnsws = {};
-let wrongAnsws = {};
+let billsList = [1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
+let billsInATM = {
+    1000: 5,
+    500: 1,
+    200: 2,
+    100: 10,
+    50: 1,
+    20: 2,
+    10: 6,
+    5: 0,
+    2: 2,
+    1: 5
+};
 
-let realAnsws = [];
+function decomposeNumber(number) {
+    if (isNaN(number) || number < 1 || number > 10000) return console.error("Введіть коректне число в діапазоні від 1 до 10000");
 
-inpt.addEventListener("keyup", function (event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("butt").click();
-    }
-});
+    const decomposedArray = String(number).split('').map((digit, index, arr) => digit * 10 ** (arr.length - index - 1)).filter(value => value > 0);
+
+    return decomposedArray.length > 0 ? decomposedArray : [0];
+}
+
+// Приклад використання
+const number = 58;
+const decomposedArray = decomposeNumber(number);
+console.log(decomposedArray);  // Вивід: [400, 50, 8]
+
+
+
 
 function mainFunc() {
-    inpt.focus();
-    let userAnsw = inpt.value;
+    let sum = inpt.value;
+    console.clear();
+    let billsAm = 0;
+    let billsNeedList = [];
 
-    if (answerCounter < 12) {
-        if (inpt.value != "") {
-            inpt.setAttribute("placeholder", `Введите ответ на задачу ${answNumb + 1}`);
-            inpt.value = "";
-            inpt.focus();
-            
-            if (userAnsw == realAnsws[answerCounter]) {
-                rightAnsws[answerCounter + 1] = userAnsw;
-                mark += 1;
-            } else {
-                wrongAnsws[answerCounter + 1] = userAnsw;
+    let sumMas = sum.split("").reverse();
+    let edsList = [];
+    for (let i in sumMas) {
+        edsList.push(parseInt(sumMas[i] + "0".repeat(i)));
+    }
+    edsList = edsList.reverse();
+
+    for (let number of edsList) {
+        let num = number;
+        for (let bankNote in billsInATM) {
+            if ((billsInATM[bankNote] * bankNote) > num) {
+                let bankNNeed = Math.floor(num / billsInATM[bankNote]);
+                billsInATM[bankNote] -= bankNNeed;
+
+                for (let i = bankNNeed; i > 0; i--) {
+                    billsNeedList.push(bankNote);
+                }
+                billsAm += bankNNeed;
+                num -= bankNNeed * bankNote;
             }
-            
-            answNumb += 1;
-            answerCounter += 1;
         }
-
     }
 
-    if (answerCounter == 12) {
-        console.log(`Оценка: ${mark}`);
+    console.log(sum);
+    console.log(edsList);
 
-        console.log("Правильные ответы: ");
-        console.log(rightAnsws);
-
-        console.log("Не правильные ответы: ");
-        console.log(wrongAnsws);
-
-    }
-
+    console.log(billsAm);
+    console.log(billsNeedList);
 }
-
-for (let i = 0; i < 12; i++) {
-    let firstNum = parseInt(_.shuffle(_.range(5, 10)).slice(0, 1));
-    let secondNum = parseInt(_.shuffle(_.range(1, 5)).slice(0, 1));
-    realAnsws.push(firstNum * secondNum);
-
-    console.log(`${i + 1}) ${firstNum} * ${secondNum} = `);
-}
-

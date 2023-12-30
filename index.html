@@ -14,9 +14,10 @@
 
 <body>
     <div class="mainBox">
-        <h1>Все задачи в консоле</h1>
-        <input type="number" id="inp" placeholder="Введите ответ на задачу 1">
-        <button id="butt" onclick="mainFunc()">Ввести</button>
+        <h1>Введите сумму</h1>
+        <input type="number" id="inp" placeholder="Введите сумму" oninput="mainFunc()">
+        <h3 id="billAmLabel">Количество купюр: </h3>
+        <h3 id="billsLabel">Купюры: </h3>
     </div>
     
     <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
