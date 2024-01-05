@@ -64,7 +64,7 @@ function mainFunc() {
         labelBillAm.textContent = `Количество купюр: в банкомате на хватает купюр`;
         labelBills.textContent = `Купюры: `;
 
-    } else if (billsAm >= 40) {
+    } else if (billsAm > 40) {
         labelBillAm.textContent = `Количество купюр: банкомат не выдает больше чем 40 купюр за раз`;
         labelBills.textContent = `Купюры: `;
 
