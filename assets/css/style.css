@@ -13,3 +13,11 @@ input {
     width: 40%;
     padding: 4px;
 }
+
+.red {
+    color: rgba(255, 0, 0, 0.7);
+}
+
+.green {
+    color: rgba(0, 128, 0, 0.64);
+}
