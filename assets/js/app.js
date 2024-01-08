@@ -1,77 +1,53 @@
-let inpt = document.querySelector("#inp");
-inpt.focus();
-let labelBillAm = document.querySelector("#billAmLabel");
-let labelBills = document.querySelector("#billsLabel");
-let bLab = document.querySelector("#showBills");
+let mainInp = document.querySelector("#mainInp");
+mainInp.focus();
+let butt = document.querySelector("button");
+let innValidityLab = document.querySelector("#innCorrectLab");
+let birthDayLab = document.querySelector("#birthDayLab");
+let genderLab = document.querySelector("#genderLab");
+let yearsLab = document.querySelector("#yearsLab");
 
-let billsList = [1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
-let billsInATM = {
-    1000: 10,
-    500: 10,
-    200: 10,
-    100: 10,
-    50: 10,
-    20: 10,
-    10: 10,
-    5: 10,
-    2: 10,
-    1: 10
-};
+let months = ["Января", "Февраля", "Марта", "Апреля", "Мая",
+    "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+
+let daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Субота", "Воскресенье"]
+
+// let dt = new Date("1899-12-31");
+// dt.setDate(dt.getDate() + 34634);
+
+// let fullBirthDate = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
+// console.log(fullBirthDate.getTime());
+
+var date1 = new Date('12-09-2017');
+var date2 = new Date('12-10-2017');
+var daysLag = Math.ceil(Math.abs(date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
+console.log(daysLag)
+
 
 
 function mainFunc() {
-    let sum = parseInt(inpt.value);
-    console.clear();
-    let billsAm = 0;
-    let billsNeedList = [];
-    let everyBillAm = [];
+    let inn = String(mainInp.value);
+    let innList = mainInp.value.split("").map((item) => +item).reverse();
 
-    for (let bankNote of billsList) {
-        // console.log("Банкнота: ", bankNote);
-        if (sum >= bankNote && billsInATM[bankNote] > 0) {
-            let bNNeed = Math.floor(sum / bankNote);
-            // console.log("Банкнот ", bankNote, " нужно ", bNNeed);
-
-            if (bNNeed >= billsInATM[bankNote]) {
-                billsNeedList.push(bankNote);
-                everyBillAm.push(billsInATM[bankNote]);
-
-                billsAm += billsInATM[bankNote];
-                sum = sum - (billsInATM[bankNote] * bankNote);
-                billsInATM[bankNote] = 0;
-
-            } else if (bNNeed < billsInATM[bankNote]) {
-                billsNeedList.push(bankNote);
-                everyBillAm.push(bNNeed);
-
-                billsAm += bNNeed;
-                sum = sum - (bNNeed * bankNote);
-                billsInATM[bankNote] -= bNNeed;
-            }
-
-            // for (let am = billsInATM[bankNote]; am > 0; am--) {
-            //     if (bNNeed > 0) {
-            //         billsNeedList.push(bankNote);
-            //         bNNeed -= 1;
-            //         billsAm += 1;
-            //         sum -= bankNote;
-            //         billsInATM[bankNote] -= 1;
-            //     }
-            // }
-        }
-    }
-    if (sum != 0) {
-        labelBillAm.textContent = `Количество купюр: в банкомате на хватает купюр`;
-        labelBills.textContent = `Купюры: `;
-
-    } else if (billsAm > 40) {
-        labelBillAm.textContent = `Количество купюр: банкомат не выдает больше чем 40 купюр за раз`;
-        labelBills.textContent = `Купюры: `;
-
-    } else if (sum == 0) {
-        labelBillAm.textContent = `Количество купюр: ${billsAm}`;
-        labelBills.textContent = `Купюры: ${billsNeedList.map((bl, index) => `${bl} x ${everyBillAm[index]}`).join("; ")}`;
+    if (innList.length == 10) {
+        innValidityLab.textContent = "ИНН корректен";
+    } else {
+        innValidityLab.textContent = "ИНН НЕ корректен";
     }
 
-    console.log(billsInATM);
+    let gender = (num) => (num % 2 === 0) ? "Пол: женский" : "Пол: мужской";
+    genderLab.textContent = gender(innList[0]);
+
+    let birthDays = parseInt(inn.substring(0, 5));
+    let dt = new Date("1899-12-31");
+    dt.setDate(dt.getDate() + birthDays);
+
+    birthDayLab.textContent = `Дата рождения: ${dt.getUTCDate()} ${months[dt.getMonth()]} ${dt.getFullYear()}, ${daysOfWeek[dt.getDay() - 1]}`;
+
+    let fullBirthDate = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
+    let nowadays = new Date();
+    // let nowadays = new Date(nowadaysString.getFullYear(), nowadaysString.getMonth(), nowadaysString.getDate());
+
+    let yearOld = Math.ceil(Math.abs(nowadays.getTime() - fullBirthDate.getTime()) / (1000 * 3600 * 24));
+
+    yearsLab.textContent = `Полных лет человеку: ${yearOld}`;
 }

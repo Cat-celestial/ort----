@@ -16,11 +16,13 @@
 
 <body>
     <div class="mainBox">
-        <h1>Введите сумму (для ввода нажмите Enter)</h1>
-        <input type="number" id="inp" placeholder="Введите сумму">
-        <button onclick="mainFunc()" class="btn btn-primary">Ввести сумму</button>
-        <h4 id="billAmLabel">Количество купюр: </h4>
-        <h4 id="billsLabel">Купюры: </h4>
+        <h2>Введите свой ИНН</h2>
+        <input type="number" id="mainInp">
+        <button class="btn btn-primary" onclick="mainFunc()">Узнать информацию</button>
+        <h4 id="innCorrectLab">ИНН коректен?</h4>
+        <h4 id="birthDayLab">Дата рождения: </h4>
+        <h4 id="genderLab">Пол: </h4>
+        <h4 id="yearsLab">Полных лет человеку: </h4>
     </div>
 
     <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
