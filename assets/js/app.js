@@ -9,18 +9,27 @@ let yearsLab = document.querySelector("#yearsLab");
 let months = ["Января", "Февраля", "Марта", "Апреля", "Мая",
     "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
 
-let daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Субота", "Воскресенье"]  
+let daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Субота", "Воскресенье"]
 
 function mainFunc() {
-    let inn = String(mainInp.value);
+    let innStr = String(mainInp.value);
     let innList = mainInp.value.split("").map((item) => +item).reverse();
 
-    if (innList.length == 10) {
-        innValidityLab.innerHTML = `ИНН <span class="green">корректен</span>`;
-        let gender = (num) => (num % 2 === 0) ? "Пол: женский" : "Пол: мужской";
-        genderLab.textContent = gender(innList[0]);
+    let checkSum = innStr[0] * -1 + innStr[1] * 5 + innStr[2] * 7 + innStr[3] * 9 + innStr[4] * 4 + innStr[5] * 6 + innStr[6] * 10 + innStr[7] * 5 + innStr[8] * 7;
+    let checkNum = checkSum % 11;
+    console.log(checkNum);
 
-        let birthDays = parseInt(inn.substring(0, 5));
+    checkNum = (checkNum >= 10) ? checkNum % 10 : checkNum;
+    parseInt(checkNum);
+    console.log(checkNum);
+
+    if (innList.length == 10 && checkNum == innList[0]) {
+        innValidityLab.innerHTML = `ИНН <span class="green">корректен</span>`;
+
+        let gender = (num) => (num % 2 === 0) ? "Пол: женский" : "Пол: мужской";
+        genderLab.textContent = gender(innList[1]);
+
+        let birthDays = parseInt(innStr.substring(0, 5));
         let dt = new Date("1899-12-31");
         dt.setDate(dt.getDate() + birthDays);
 
