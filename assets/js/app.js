@@ -17,11 +17,11 @@ function mainFunc() {
 
     let checkSum = innStr[0] * -1 + innStr[1] * 5 + innStr[2] * 7 + innStr[3] * 9 + innStr[4] * 4 + innStr[5] * 6 + innStr[6] * 10 + innStr[7] * 5 + innStr[8] * 7;
     let checkNum = checkSum % 11;
-    console.log(checkNum);
+    // console.log(checkNum);
 
     checkNum = (checkNum >= 10) ? checkNum % 10 : checkNum;
-    parseInt(checkNum);
-    console.log(checkNum);
+    // parseInt(checkNum);
+    // console.log(checkNum);
 
     if (innList.length == 10 && checkNum == innList[0]) {
         innValidityLab.innerHTML = `ИНН <span class="green">корректен</span>`;
@@ -33,7 +33,7 @@ function mainFunc() {
         let dt = new Date("1899-12-31");
         dt.setDate(dt.getDate() + birthDays);
 
-        birthDayLab.textContent = `Дата рождения: ${dt.getUTCDate()} ${months[dt.getMonth()]} ${dt.getFullYear()}, ${daysOfWeek[dt.getDay() - 1]}`;
+        birthDayLab.textContent = `Дата рождения: ${dt.getDate()} ${months[dt.getMonth()]} ${dt.getFullYear()}, ${daysOfWeek[dt.getDay() - 1]}`;
 
         let fullBirthDate = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
         let nowadays = new Date();
