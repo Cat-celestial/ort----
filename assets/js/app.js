@@ -9,7 +9,7 @@ let yearsLab = document.querySelector("#yearsLab");
 let months = ["Января", "Февраля", "Марта", "Апреля", "Мая",
     "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
 
-let daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Субота", "Воскресенье"]
+let daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Субота"]
 
 function mainFunc() {
     let innStr = String(mainInp.value);
@@ -33,7 +33,8 @@ function mainFunc() {
         let dt = new Date("1899-12-31");
         dt.setDate(dt.getDate() + birthDays);
 
-        birthDayLab.textContent = `Дата рождения: ${dt.getDate()} ${months[dt.getMonth()]} ${dt.getFullYear()}, ${daysOfWeek[dt.getDay() - 1]}`;
+        birthDayLab.textContent = `Дата рождения: ${dt.getDate()} ${months[dt.getMonth()]} ${dt.getFullYear()}, ${daysOfWeek[dt.getDay()]}`;
+        // console.log(dt.getDay());
 
         let fullBirthDate = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
         let nowadays = new Date();
