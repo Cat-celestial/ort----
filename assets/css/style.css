@@ -1,23 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap");
 
 body {
     margin: 0;
 }
 
 .mainBox {
-    width: 80%;
+    width: 90%;
     margin: 50px auto;
 }
 
-input {
-    width: 40%;
-    padding: 4px;
+.mainClothBox {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 30px;
 }
 
-.red {
-    color: rgba(255, 0, 0, 0.7);
+.clothBox {
+    box-shadow: 1px 1px 10px 1px rgba(128, 128, 128, 0.342);
+    padding: 20px;
+    height: 53vh;
 }
 
-.green {
-    color: rgba(0, 128, 0, 0.64);
+.prodImg {
+    display: block;
+    margin: 20px auto;
+}
+
+.clothDesc {
+    font-size: 15px;
+}
+
+.sortByLab {
+    display: inline-block;
+}
+
+.price {
+    text-align: right;
+    margin-top: 30px;
+    font-weight: 600;
+}
+
+.inp {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+label {
+    font-size: 18px;
+    font-weight: 400;
 }

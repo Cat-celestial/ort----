@@ -16,17 +16,21 @@
 
 <body>
     <div class="mainBox">
-        <h2>Введите свой ИНН</h2>
-        <input type="number" id="mainInp">
-        <button class="btn btn-primary" onclick="mainFunc()">Узнать информацию</button>
-        <h4 id="innCorrectLab">ИНН коректен?</h4>
-        <h4 id="birthDayLab">Дата рождения: </h4>
-        <h4 id="genderLab">Пол: </h4>
-        <h4 id="yearsLab">Полных лет человеку: </h4>
+        <div class="sortMainBox">
+            <h3 class="sortByLab">Сортировать по: </h3>
+            <input type="radio" class="inp" id="increaseInp" name="drone">
+            <label for="increaseInp">Возрастанию цен</label>
+
+            <input type="radio" class="inp" id="decreaseInp" name="drone">
+            <label for="decreaseInp">Спаданию цен</label>
+        </div>
+        <div class="mainClothBox">
+
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/app.js"></script>
 </body>
 
 </html>

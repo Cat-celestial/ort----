@@ -1,53 +1,104 @@
-let mainInp = document.querySelector("#mainInp");
-mainInp.focus();
-let butt = document.querySelector("button");
-let innValidityLab = document.querySelector("#innCorrectLab");
-let birthDayLab = document.querySelector("#birthDayLab");
-let genderLab = document.querySelector("#genderLab");
-let yearsLab = document.querySelector("#yearsLab");
+const url = await fetch('https://fakestoreapi.com/products');
+const storeObj = await url.json();
+console.log(storeObj);
 
-let months = ["Января", "Февраля", "Марта", "Апреля", "Мая",
-    "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+let clothBox = document.querySelector(".mainClothBox");
 
-let daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Субота"]
+for (let item of storeObj) {
+    let newTag = document.createElement("div");
+    let cutDesc = 100;
+    let dots = "...";
 
-function mainFunc() {
-    let innStr = String(mainInp.value);
-    let innList = mainInp.value.split("").map((item) => +item).reverse();
-
-    let checkSum = innStr[0] * -1 + innStr[1] * 5 + innStr[2] * 7 + innStr[3] * 9 + innStr[4] * 4 + innStr[5] * 6 + innStr[6] * 10 + innStr[7] * 5 + innStr[8] * 7;
-    let checkNum = checkSum % 11;
-    // console.log(checkNum);
-
-    checkNum = (checkNum >= 10) ? checkNum % 10 : checkNum;
-    // parseInt(checkNum);
-    // console.log(checkNum);
-
-    if (innList.length == 10 && checkNum == innList[0]) {
-        innValidityLab.innerHTML = `ИНН <span class="green">корректен</span>`;
-
-        let gender = (num) => (num % 2 === 0) ? "Пол: женский" : "Пол: мужской";
-        genderLab.textContent = gender(innList[1]);
-
-        let birthDays = parseInt(innStr.substring(0, 5));
-        let dt = new Date("1899-12-31");
-        dt.setDate(dt.getDate() + birthDays);
-
-        birthDayLab.textContent = `Дата рождения: ${dt.getDate()} ${months[dt.getMonth()]} ${dt.getFullYear()}, ${daysOfWeek[dt.getDay()]}`;
-        // console.log(dt.getDay());
-
-        let fullBirthDate = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
-        let nowadays = new Date();
-        // let nowadays = new Date(nowadaysString.getFullYear(), nowadaysString.getMonth(), nowadaysString.getDate());
-
-        let yearOld = Math.floor(Math.ceil(Math.abs(nowadays.getTime() - fullBirthDate.getTime()) / (1000 * 3600 * 24)) / 365);
-
-        yearsLab.textContent = `Полных лет человеку: ${yearOld}`;
-    } else {
-        innValidityLab.innerHTML = `ИНН <span class="red">НЕ</span> корректен`;
-        birthDayLab.textContent = "Дата рождения: ";
-        genderLab.textContent = "Пол: ";
-        yearsLab.textContent = "Полных лет человеку: ";
+    if (item.title.length > 60) {
+        cutDesc = 60;
+    } else if (item.title.length < 60) {
+        dots = "";
     }
 
+    newTag.innerHTML = `
+        <div class="clothBox">
+            <img src="${item.image}" height="100px" class="prodImg">
+            <h5 class="clothName">${item.title.slice(0, 60) + dots}</h5>
+            <p class="clothDesc">${item.description.slice(0, cutDesc) + "..."}</p>
+            <h5 class="price">$${item.price}</h5>
+        </div>
+    `;
+
+
+    clothBox.appendChild(newTag);
 }
+
+let pricesNormalList = [];
+for (let prod of storeObj) {
+    pricesNormalList.push(prod.price);
+}
+let priceIncr = pricesNormalList.slice().sort((a, b) => a - b);
+let priceDecr = priceIncr.slice().reverse();
+
+
+console.log("Цены по порядку", pricesNormalList);
+console.log("Цены по спаданию", priceDecr);
+console.log("Цены по возрастанию", priceIncr);
+
+let incInp = document.querySelector("#increaseInp");
+incInp.addEventListener("click", function () {
+    clothBox.innerHTML = "";
+
+    for (let pr of priceIncr) {
+        let newTag = document.createElement("div");
+        let cutDesc = 100;
+        let dots = "...";
+
+        let item = storeObj[pricesNormalList.indexOf(pr)];
+
+        if (item.title.length > 60) {
+            cutDesc = 60;
+        } else if (item.title.length < 60) {
+            dots = "";
+        }
+
+        newTag.innerHTML = `
+            <div class="clothBox">
+                <img src="${item.image}" height="100px" class="prodImg">
+                <h5 class="clothName">${item.title.slice(0, 60) + dots}</h5>
+                <p class="clothDesc">${item.description.slice(0, cutDesc) + "..."}</p>
+                <h5 class="price">$${item.price}</h5>
+            </div>
+        `;
+
+
+        clothBox.appendChild(newTag);
+    }
+});
+
+let decrInp = document.querySelector("#decreaseInp");
+decrInp.addEventListener("click", function () {
+    clothBox.innerHTML = "";
+
+    for (let pr of priceDecr) {
+        let newTag = document.createElement("div");
+        let cutDesc = 100;
+        let dots = "...";
+
+        let item = storeObj[pricesNormalList.indexOf(pr)];
+
+        if (item.title.length > 60) {
+            cutDesc = 60;
+        } else if (item.title.length < 60) {
+            dots = "";
+        }
+
+        newTag.innerHTML = `
+            <div class="clothBox">
+                <img src="${item.image}" height="100px" class="prodImg">
+                <h5 class="clothName">${item.title.slice(0, 60) + dots}</h5>
+                <p class="clothDesc">${item.description.slice(0, cutDesc) + "..."}</p>
+                <h5 class="price">$${item.price}</h5>
+            </div>
+        `;
+
+
+        clothBox.appendChild(newTag);
+    }
+
+});
