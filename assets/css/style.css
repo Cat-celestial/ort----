@@ -4,16 +4,31 @@ body {
     margin: 0;
 }
 
-.mainBox {
-    width: 90%;
-    margin: 50px auto;
+/* HEADER */
+#logoImg {
+    width: 60px;
+    border-radius: 13px;
+}
+
+/* MAIN PART */
+
+.prodsBigBox {
+    margin: 30px;
+    display: grid;
+    grid-template-columns: 75% 25%;
+    gap: 30px;
 }
 
 .mainClothBox {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
-    margin-top: 30px;
+}
+
+.sortMainBox {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 #searchInp {
@@ -48,7 +63,7 @@ body {
     font-weight: 600;
 }
 
-.inp {
+.radioInp {
     display: inline-block;
     margin-left: 20px;
 }
@@ -58,5 +73,6 @@ label {
     font-weight: 400;
 }
 
-.sortMainBox {
+input[type="range"] {
+    width: 85%;
 }
