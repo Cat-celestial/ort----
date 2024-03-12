@@ -41,7 +41,7 @@ body {
 .clothBox {
     box-shadow: 1px 1px 10px 1px rgba(128, 128, 128, 0.342);
     padding: 20px;
-    height: 53vh;
+    /* height: 53vh; */
 }
 
 .prodImg {
@@ -75,4 +75,19 @@ label {
 
 input[type="range"] {
     width: 85%;
+}
+
+.amProdsLab {
+    margin-right: 10px;
+}
+
+.changeAmProdBut {
+    border-color: rgb(226, 122, 217);
+    border-radius: 4px;
+    border-width: 3px;
+}
+
+.currProdAm {
+    margin: 0 10px;
+    display: inline;
 }
