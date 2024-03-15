@@ -34,8 +34,10 @@
                 </a>
                 <a class="d-flex navbar-brand basketBox">
                     <img src="assets/images/cart.png" alt="">
-                    <h4 class="amProdsLab" >(0)</h4> <!--v-model="cartAmount"-->
-                    <h4>$0.00</h4>  <!--v-model="cartCost"-->
+                    <h4 class="amProdsLab">(0)</h4>
+                    <!--v-model="cartAmount"-->
+                    <h4>$0.00</h4>
+                    <!--v-model="cartCost"-->
                 </a>
 
                 <form class="d-flex" role="search">
@@ -46,6 +48,13 @@
         </nav>
         <div class="prodsBigBox">
             <div class="mainClothBox">
+                <!-- <button @click="objectFilter">-1</button> -->
+                <!-- <div>
+                    <div v-for="(thing, index) in objects" :key="index">
+                        Name: {{thing.bName}} Lonely: {{thing.lonely}}
+                    </div>
+                </div> -->
+
                 <prods-block
                     v-for="prod in stafVueObj"
                     :prods-info="prod"
