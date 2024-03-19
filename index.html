@@ -41,24 +41,14 @@
                 </a>
 
                 <form class="d-flex" role="search">
-                    <input @input="render" v-model="searchValue" class="form-control me-5 searchInp" type="text"
+                    <input v-model="searchValue" @input="render" class="form-control me-5 searchInp" type="text"
                         placeholder="Search">
                 </form>
             </div>
         </nav>
         <div class="prodsBigBox">
             <div class="mainClothBox">
-                <!-- <button @click="objectFilter">-1</button> -->
-                <!-- <div>
-                    <div v-for="(thing, index) in objects" :key="index">
-                        Name: {{thing.bName}} Lonely: {{thing.lonely}}
-                    </div>
-                </div> -->
-
-                <prods-block
-                    v-for="prod in stafVueObj"
-                    :prods-info="prod"
-                ></prods-block>
+                
             </div>
             <div class="sortMainBox">
                 <h3 class="sortByLab">Сортировка</h3>
